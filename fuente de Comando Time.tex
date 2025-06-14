@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{a4paper, margin=1in}
+
+\title{Explicación de Tiempos de Ejecución}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Real (Tiempo real o transcurrido)}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{DemostraciónComandoTime.png} % Cambia "ejemplo.png" por tu archivo
+    \caption{Diagrama de tiempos de ejecución (Real, User, Sys).}
+    \label{fig:tiempos}
+\end{figure}
+\begin{itemize}[leftmargin=*]
+    \item[$\bullet$] \textbf{¿Qué es?} Este es el tiempo total que tardó tu programa en ejecutarse, medido como si lo estuvieras cronometrando con un reloj de pared. Es el tiempo que transcurrió desde que iniciaste el programa hasta que finalizó.
+    
+    \item[$\bullet$] \textbf{¿Qué incluye?} Incluye todo: el tiempo que tu programa estuvo ejecutando código, pero también el tiempo que estuvo esperando (por ejemplo, esperando la entrada/salida de datos, esperando que el sistema operativo le asigne recursos de CPU, o incluso esperando mientras otros programas usan el procesador).
+\end{itemize}
+
+\section*{User (Tiempo de usuario)}
+
+\begin{itemize}[leftmargin=*]
+    \item[$\bullet$] \textbf{¿Qué es?} Este es el tiempo de CPU que tu programa pasó ejecutando su propio código en ``modo usuario''. El modo usuario es donde se ejecutan las instrucciones de tu programa, fuera del núcleo del sistema operativo (kernel).
+    
+    \item[$\bullet$] \textbf{¿Qué incluye?} Solo cuenta el tiempo activo de la CPU dedicado directamente a las operaciones lógicas y cálculos de tu programa. No incluye el tiempo que el programa estuvo esperando por otras cosas o el tiempo que la CPU dedicó al sistema operativo en nombre de tu programa.
+\end{itemize}
+
+\section*{Sys (Tiempo de sistema)}
+
+\begin{itemize}[leftmargin=*]
+    \item[$\bullet$] \textbf{¿Qué es?} Este es el tiempo de CPU que tu programa gastó ejecutando llamadas al sistema (system calls) en ``modo kernel'' o ``modo sistema''. Las llamadas al sistema son peticiones que tu programa hace al sistema operativo para realizar tareas de bajo nivel, como leer o escribir archivos, asignar memoria, crear nuevos procesos, comunicarse a través de la red, etc.
+    
+    \item[$\bullet$] \textbf{¿Qué incluye?} Es el tiempo que la CPU dedica a que el sistema operativo realice tareas en nombre de tu programa.
+\end{itemize}
+
+\end{document}
