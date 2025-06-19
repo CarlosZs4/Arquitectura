@@ -1,0 +1,123 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[margin=2cm]{geometry}
+
+\title{Fórmulas Clave en Arquitectura de Computadores}
+\author{Resumen para Estudio}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Fórmulas Esenciales}
+
+\subsection{Ciclos de Reloj}
+\[
+\text{Ciclos totales} = \sum (\text{N° instrucciones tipo } X \times \text{CPI de } X)
+\]
+\textbf{Ejemplo:} 
+\begin{itemize}
+    \item 500 inst. aritméticas (CPI=1): \(500 \times 1 = 500\) ciclos.
+    \item 50 inst. almacenamiento (CPI=5): \(50 \times 5 = 250\) ciclos.
+\end{itemize}
+
+\subsection{Tiempo de Ejecución}
+\[
+T = \frac{\text{Ciclos totales}}{\text{Frecuencia de reloj}} \quad \text{(Frecuencia en Hz)}
+\]
+\textbf{Unidades:}
+\begin{itemize}
+    \item 1 GHz = \(10^9\) Hz.
+    \item 1 \(\mu\)s = \(10^{-6}\) s.
+\end{itemize}
+
+\subsection{CPI Global}
+\[
+\text{CPI} = \frac{\text{Ciclos totales}}{\text{N° total de instrucciones}} = \sum (\% \text{inst. } X \times \text{CPI } X)
+\]
+\textbf{Ejemplo:} 
+\[
+\text{CPI} = (0.1 \times 1) + (0.2 \times 2) + \dots
+\]
+
+\subsection{Aceleración (\textit{Speedup})}
+\[
+\text{Speedup} = \frac{T_{\text{original}}}{T_{\text{mejorado}}}
+\]
+\textbf{Relacionado:}
+\[
+T_{\text{mejorado}} = T_{\text{original}} \times (1 - \text{\% reducción})
+\]
+
+\subsection{Frecuencia Requerida}
+\[
+f_{\text{nuevo}} = f_{\text{original}} \times \frac{\text{CPI}_{\text{nuevo}}}{\text{CPI}_{\text{original}}}} \times \frac{T_{\text{original}}}{T_{\text{nuevo}}}
+\]
+
+\subsection{Instrucciones para un Tiempo Objetivo}
+\[
+I = \text{IPC} \times f \times T \quad \text{(IPC} = 1/\text{CPI)}
+\]
+
+\subsection{IPC (Instrucciones por Ciclo)}
+\[
+\text{IPC} = \frac{1}{\text{CPI}} = \frac{\text{N° instrucciones}}{\text{Ciclos totales}}
+\]
+
+\section{Estrategias Clave}
+
+\begin{itemize}
+    \item \textbf{Identificar el problema:} ¿Calcular tiempo, CPI, ciclos o optimización?
+    \item \textbf{Unidades:} Siempre convertir GHz a Hz (\( \times 10^9\)) y verificar segundos vs. \(\mu\)s.
+    \item \textbf{Optimización:} Reducir instrucciones con alto CPI (ej: carga/almacenamiento) mejora rendimiento.
+    \item \textbf{Speedup:} Comparar \(T_{\text{original}}\) vs. \(T_{\text{mejorado}}\).
+\end{itemize}
+
+\section{Ejemplo Resuelto}
+
+\subsection{Datos Iniciales}
+\begin{tabular}{lcc}
+    \toprule
+    Tipo Instrucción & N° Instrucciones & CPI \\
+    \midrule
+    Aritméticas      & 500             & 1   \\
+    Carga           & 100             & 5   \\
+    Almacenamiento  & 50              & 5   \\
+    Saltos          & 50              & 2   \\
+    \bottomrule
+\end{tabular}
+
+\subsection{Pasos}
+\begin{enumerate}
+    \item \textbf{Ciclos totales:} 
+    \[
+    500 \times 1 + 100 \times 5 + 50 \times 5 + 50 \times 2 = 1350 \text{ ciclos}
+    \]
+    \item \textbf{CPI:} 
+    \[
+    \frac{1350}{700} \approx 1.93
+    \]
+    \item \textbf{Tiempo (2 GHz):} 
+    \[
+    \frac{1350}{2 \times 10^9} = 0.675 \mu\text{s}
+    \]
+\end{enumerate}
+
+\section{Resumen en Tabla}
+\begin{tabular}{ll}
+    \toprule
+    \textbf{Concepto} & \textbf{Fórmula} \\
+    \midrule
+    Ciclos totales & \(\sum (\text{Inst.} \times \text{CPI})\) \\
+    Tiempo & \(\frac{\text{Ciclos}}{f}\) \\
+    CPI & \(\frac{\text{Ciclos}}{\text{Instrucciones}}\) \\
+    Speedup & \(\frac{T_{\text{original}}}{T_{\text{mejorado}}}\) \\
+    \bottomrule
+\end{tabular}
+
+\end{document}
