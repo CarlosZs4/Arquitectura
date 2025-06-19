@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\title{Opciones de Optimización en GCC}
+\author{Usuario}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Niveles Generales de Optimización}
+\begin{itemize}
+    \item \textbf{\textcolor{blue}{-O0}} (por defecto):  
+    \begin{itemize}
+        \item *Sin optimización*, ideal para depuración.
+    \end{itemize}
+    
+    \item \textbf{\textcolor{blue}{-O1}} (\textbf{-O}):  
+    \begin{itemize}
+        \item Optimizaciones básicas (ej: eliminación de código inalcanzable).
+    \end{itemize}
+    
+    \item \textbf{\textcolor{blue}{-O2}}:  
+    \begin{itemize}
+        \item *Recomendado para producción*. Incluye:
+        \begin{itemize}
+            \item \texttt{Inlining} de funciones pequeñas.
+            \item Reordenamiento de instrucciones.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{\textcolor{blue}{-O3}}:  
+    \begin{itemize}
+        \item *Máximo rendimiento*, pero aumenta tamaño. Incluye:
+        \begin{itemize}
+            \item Vectorización de bucles.
+            \item \texttt{Inline} agresivo.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{\textcolor{blue}{-Os}}:  
+    \begin{itemize}
+        \item Optimiza para *reducir tamaño* (ideal para嵌入式系统).
+    \end{itemize}
+    
+    \item \textbf{\textcolor{blue}{-Ofast}}:  
+    \begin{itemize}
+        \item Como \texttt{-O3}, pero *ignora estándares* (ej: IEEE 754).
+    \end{itemize}
+\end{itemize}
+
+\section{Opciones Específicas Clave}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Opción} & \textbf{Descripción} \\ \hline
+\texttt{-ftree-vectorize} & Vectoriza bucles (activo en \texttt{-O2+}). \\ \hline
+\texttt{-funroll-loops} & Desenrolla bucles (*aumenta tamaño*). \\ \hline
+\texttt{-flto} & *Link-Time Optimization* (optimización global). \\ \hline
+\texttt{-march=native} & Genera código para la CPU actual. \\ \hline
+\end{tabular}
+
+\section{Ejemplos Prácticos}
+\begin{lstlisting}[language=bash, frame=single]
+# Máxima optimización para la CPU local:
+gcc -O3 -march=native -flto programa.c -o programa
+
+# Optimizar para tamaño (-Os):
+gcc -Os programa.c -o programa_min
+
+# Generar info de vectorización:
+gcc -O2 -ftree-vectorize -fopt-info-vec programa.c
+\end{lstlisting}
+
+\section{Advertencias}
+\begin{itemize}
+    \item \textcolor{red}{\textbf{-O3}} puede dificultar la *depuración*.
+    \item \texttt{-Ofast} no es compatible con *precisión numérica estricta*.
+    \item \texttt{-flto} requiere usarse en *compilación y enlazado*.
+\end{itemize}
+
+\end{document}
