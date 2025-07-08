@@ -131,7 +131,7 @@ En MIPS32, los riesgos de desbordamiento (overflow) pueden ocurrir principalment
 \subsubsection*{3. Complejidad Temporal}
 
 \begin{itemize}[leftmargin=*]
-    \item Recursiva: O(2ⁿ) operaciones (ineficiente por recálculos redundantes).
+    \item Recursiva: $O(2^n)$ operaciones (ineficiente por recálculos redundantes).
     \item Iterativa: O(n) operaciones (avance lineal sin repetición).
 \end{itemize}
 
@@ -145,7 +145,7 @@ Realmente no encontramos muchas diferencias significativas entre los ejercicios 
     \item \textbf{Instrucciones equivalentes pero más claras}:
     \begin{itemize}
         \item Donde el libro usa secuencias complejas, nosotros empleamos instrucciones equivalentes pero más directas
-        
+        \item Ejemplo: Sustituimos algunas operaciones con \texttt{mult} por \texttt{mul} cuando el resultado cabía en 32 bits
     \end{itemize}
     
     \item \textbf{Organización del código}:
@@ -170,8 +170,8 @@ En esencia, mantuvimos la misma estructura y lógica de los ejemplos del libro, 
 \begin{enumerate}[leftmargin=*]
     \item \textbf{Carga del programa}:
     \begin{itemize}
-        \item Abrir el simulador MARS 
-        \item Seleccionar \texttt{File → Open} y buscar el archivo \texttt{fibonacci_iterativo.asm}
+        \item Abrir el simulador MARS (MIPS Assembler and Runtime Simulator)
+        \item Seleccionar \texttt{File → Open} y buscar el archivo \texttt{fibonacci.asm}
         \item Verificar que no haya errores de sintaxis en el panel "Mars Messages"
     \end{itemize}
     
@@ -192,7 +192,7 @@ Para nuestra implementación seleccionamos el método \textbf{iterativo} basánd
 
 \subsubsection*{Ventajas de eficiencia}
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Complejidad temporal}: O(n) vs O(2ⁿ) de la versión recursiva
+    \item \textbf{Complejidad temporal}: O(n) vs $O(2^n)$ de la versión recursiva
     \item \textbf{Uso de memoria}: Constante (4 registros) vs crecimiento lineal de pila
     \item \textbf{Ciclos de CPU}: 95\% menos instrucciones ejecutadas para n=20
 \end{itemize}
